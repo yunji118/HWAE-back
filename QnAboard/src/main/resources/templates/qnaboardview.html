@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글 상세 페이지</title>
+</head>
+<style>
+    .layout{
+        width: 300px;
+        margin-top: 40px;
+    }
+
+    .layout textarea {
+        width: 100%;
+        margin-top : 10px;
+    }
+
+</style>
+<body>
+<h1 th:text ="${qna.title}">제목입니다.</h1>
+<h3 th:text = "${qna.timestamp}">작성시간</h3>
+<p th:text="${qna.content}">내용이 들어갈 부분입니다.</p>
+<a th:href="@{/qnaboard/delete(postID=${qna.postID})}">글삭제</a>
+<a th:href="@{/qnaboard/modify/{postID}(postID = ${qna.postID})}">수정</a>
+<br>
+
+<br>
+<hr/>
+
+<!-- 댓글 -->
+<table>
+    <thead>
+    <tr>
+        <th>댓글id</th>
+        <th>댓글내용</th>
+        <th>댓글작성시간</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="comment : ${comment}">   <!--보드가 없을 때까지 반복-->
+        <td>
+            <p th:text="${comment.commentID}"></p>
+        </td>
+        <td>
+            <p th:text="${comment.content}"></p>
+        </td>
+        <td>
+            <p th:text="${comment.timestamp}">댓글 작성시간</p>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
+<!-- 댓글 입력창-->
+<div class = "layout">
+    <form action = "/qnaboard/commentpro" method="post">  <!--데이터를 어디에 보내줄 것인가-->
+        <textarea name="content"></textarea>
+        <input type="hidden" name="postID" value="${qna.postID}">  <!--실제로 값은 담고 있지만 화면에는 보이지 않음-->
+        <button type="submit">댓글 작성</button>   <!--버튼 누르면 데이터가 전송됨 -->
+    </form>
+</div>
+
+</body>
+</html>
