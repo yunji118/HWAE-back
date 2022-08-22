@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>게시물 작성폼</title>
+</head>
+<style>
+    .layout{
+        width: 500px;
+        margin: 0 auto;
+        margin-top: 40px;
+    }
+
+    .layout input{
+        width: 100%;
+        box-sizing: border-box;
+
+    }
+
+    .layout textarea {
+        width: 100%;
+        margin-top : 10px;
+        min-height: 300px;
+    }
+
+</style>
+
+
+<body>
+<div class = "layout">
+    <form action = "/qnaboard/writepro" method="post">  <!--데이터를 어디에 보내줄 것인가-->
+        <input name = "title" type ="text">   <!-- 지정해준 이름으로 매개변수에 담겨서 들어감-->
+        <textarea name="content"></textarea>
+        비밀글: <input name = "secret" type="checkbox">
+        비밀번호: <input name = "postPW" type="password">
+        <button type="submit">작성</button>   <!--버튼 누르면 데이터가 전송됨 -->
+    </form>
+</div>
+
+</body>
+</html>
